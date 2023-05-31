@@ -67,7 +67,7 @@ public class AviaSoulsTest {
     }
 
     @Test
-    public void searchAndSortByComparator () {
+    public void searchAndSortByComparatorSomeTicket () {
 
         Ticket ticket1 = new Ticket("Чита1", "Москва1", 124, 12, 16);
         Ticket ticket2 = new Ticket("Чита", "Москва", 123, 12, 14);
@@ -91,6 +91,62 @@ public class AviaSoulsTest {
         Ticket[] actual = AS.searchAndSortBy("Чита", "Москва", comparator);
 
         Assertions.assertArrayEquals(expect, actual);
+       }
 
-}
+    @Test
+    public void searchAndSortByComparatorOneTicket () {
+
+        Ticket ticket1 = new Ticket("Чита1", "Москва1", 124, 12, 16);
+        Ticket ticket2 = new Ticket("Чита2", "Москва2", 123, 12, 15);
+        Ticket ticket3 = new Ticket("Чита3", "Москва3", 122, 12, 14);
+        Ticket ticket4 = new Ticket("Чита4", "Москва4", 121, 12, 13);
+        Ticket ticket5 = new Ticket("Чита5", "Москва5", 120, 12, 12);
+        Ticket ticket6 = new Ticket("Чита6", "Москва6", 125, 12, 11);
+
+        TicketTimeComparator comparator = new TicketTimeComparator();
+
+        AviaSouls AS = new AviaSouls();
+
+        AS.add(ticket1);
+        AS.add(ticket2);
+        AS.add(ticket3);
+        AS.add(ticket4);
+        AS.add(ticket5);
+        AS.add(ticket6);
+
+        Ticket[] expect = {ticket6};
+        Ticket[] actual = AS.searchAndSortBy("Чита6", "Москва6", comparator);
+
+        Assertions.assertArrayEquals(expect, actual);
+
+    }
+
+    @Test
+    public void searchAndSortByComparatorNoTicket () {
+
+        Ticket ticket1 = new Ticket("Чита1", "Москва1", 124, 12, 16);
+        Ticket ticket2 = new Ticket("Чита2", "Москва2", 123, 12, 15);
+        Ticket ticket3 = new Ticket("Чита3", "Москва3", 122, 12, 14);
+        Ticket ticket4 = new Ticket("Чита4", "Москва4", 121, 12, 13);
+        Ticket ticket5 = new Ticket("Чита5", "Москва5", 120, 12, 12);
+        Ticket ticket6 = new Ticket("Чита6", "Москва6", 125, 12, 11);
+
+        TicketTimeComparator comparator = new TicketTimeComparator();
+
+        AviaSouls AS = new AviaSouls();
+
+        AS.add(ticket1);
+        AS.add(ticket2);
+        AS.add(ticket3);
+        AS.add(ticket4);
+        AS.add(ticket5);
+        AS.add(ticket6);
+
+        Ticket[] expect = {};
+        Ticket[] actual = AS.searchAndSortBy("Чита7", "Москва7", comparator);
+
+        Assertions.assertArrayEquals(expect, actual);
+
+    }
+
 }
